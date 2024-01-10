@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 
-const REQUEST_TIMEOUT = 3000;
+const REQUEST_TIMEOUT = 10000;
 
 enum EAPIRoutes {
   PEOPLE = 'people/',
@@ -15,7 +15,7 @@ export enum EGender {
   OTHER = 'other',
 }
 
-interface ICharacter {
+export interface ICharacter {
   name: string;
   birth_year: string;
   eye_color: string;
@@ -34,8 +34,33 @@ interface ICharacter {
   edited: string;
 }
 
-class APIService {
+interface IFilm {
+  title: string;
+  episode_id: number;
+  opening_crawl: string;
+  director: string;
+  producer: string;
+  release_date: Date;
+  species: Array<string>;
+  starships: Array<string>;
+  vehicles: Array<string>;
+  characters: Array<string>;
+  planets: Array<string>;
+  url: string;
+  created: string;
+  edited: string;
+}
+
+export interface ISWAPIResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: ICharacter[];
+}
+
+class StarWarsAPIService {
   private baseURL: string;
+
   private axiosInstance: AxiosInstance;
 
   constructor() {
@@ -45,20 +70,15 @@ class APIService {
 
     this.baseURL = process.env.REACT_APP_API_URL;
     this.axiosInstance = axios.create({
-      baseURL: this.baseURL,
+      baseURL: process.env.REACT_APP_API_URL,
       timeout: REQUEST_TIMEOUT,
     });
   }
 
-  public getCharactes = async (
-    movies?: Array<number>,
-    name?: string,
-    gender?: EGender,
-    mass?: { from: number; to: number }
-  ): Promise<ICharacter[]> => {
+  public getCharactes = async (name?: string, page?: number): Promise<ICharacter[]> => {
     try {
-      const response = await this.axiosInstance.get(EAPIRoutes.PEOPLE);
-      return response.data;
+      const response = await this.axiosInstance.get(EAPIRoutes.PEOPLE, { params: { name, page } });
+      return response.data.results;
     } catch (error) {
       return Promise.reject(error);
     }
@@ -67,11 +87,20 @@ class APIService {
   public getCharacter = async (id: number): Promise<ICharacter> => {
     try {
       const response = await this.axiosInstance.get(`${EAPIRoutes.PEOPLE}${id}/`);
-      return response.data;
+      return response.data.results;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  };
+
+  public getFilms = async (): Promise<IFilm[]> => {
+    try {
+      const response = await this.axiosInstance.get(EAPIRoutes.FILMS);
+      return response.data.results;
     } catch (error) {
       return Promise.reject(error);
     }
   };
 }
 
-export const APIServiceInstance = new APIService();
+export const starWarsAPIService = new StarWarsAPIService();

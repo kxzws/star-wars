@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
@@ -6,7 +6,7 @@ import { Character, MainList } from './features';
 
 import './App.scss';
 
-const App = () => {
+const App = (): ReactElement => {
   return (
     <>
       <Header />

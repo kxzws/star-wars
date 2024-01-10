@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-// import notesReducer from './notes/slices';
+import listReducer from './list/slices';
 
 const rootReducer = combineReducers({
-  // notes: notesReducer,
+  list: listReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

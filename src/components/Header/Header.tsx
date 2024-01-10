@@ -1,5 +1,11 @@
-import * as styles from './styles';
+import { ReactElement } from 'react';
 
-export const Header = () => {
-  return <styles.Header>Header</styles.Header>;
+import { Header as HeaderCont, Headline } from './styles';
+
+export const Header = (): ReactElement => {
+  return (
+    <HeaderCont>
+      <Headline>Star Wars Characters Explorer</Headline>
+    </HeaderCont>
+  );
 };
