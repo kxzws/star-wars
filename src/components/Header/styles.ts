@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 
 import { COLORS } from '../../utils';
@@ -14,7 +15,7 @@ export const Header = styled('header')`
   background-color: ${COLORS.black};
 `;
 
-export const Headline = styled('h1')`
+export const Headline = styled(Link)`
   font-family: 'Rubik Mono One';
   font-size: 32px;
   font-weight: 400;
