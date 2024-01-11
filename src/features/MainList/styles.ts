@@ -1,11 +1,13 @@
 import { styled } from '@mui/system';
 import Masonry from 'react-masonry-css';
 
+import { COLORS } from '../../utils';
+
 export const MainList = styled('main')`
   flex: 1 1 auto;
   padding: 12px 74px;
   width: 100%;
-  background-color: #0f0f0f;
+  background-color: ${COLORS.darkGrey};
   background-image: radial-gradient(white, rgba(255, 255, 255, 0.9) 2px, transparent 0),
     radial-gradient(white, rgba(255, 255, 255, 0.95) 1px, transparent 0),
     radial-gradient(white, rgba(255, 255, 255, 0.8) 1px, transparent 0),
@@ -24,7 +26,7 @@ export const MainList = styled('main')`
 
 export const MainMasonry = styled(Masonry)`
   display: flex;
-  margin-left: -60px;
+  margin-left: -50px;
   width: auto;
 
   & .masonry {

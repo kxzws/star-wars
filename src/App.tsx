@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
-import { Character, MainList } from './features';
+import { Character, Main } from './features';
 
 import './App.scss';
 
@@ -12,7 +12,7 @@ const App = (): ReactElement => {
       <Header />
 
       <Routes>
-        <Route path="/" element={<MainList />} />
+        <Route path="/" element={<Main />} />
 
         <Route path="/characters/:id" element={<Character />} />
       </Routes>

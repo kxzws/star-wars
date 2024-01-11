@@ -1,5 +1,7 @@
 import { styled } from '@mui/system';
 
+import { COLORS } from '../../utils';
+
 export const Header = styled('header')`
   padding: 22px 42px;
   width: 100%;
@@ -9,7 +11,7 @@ export const Header = styled('header')`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0c090a;
+  background-color: ${COLORS.black};
 `;
 
 export const Headline = styled('h1')`

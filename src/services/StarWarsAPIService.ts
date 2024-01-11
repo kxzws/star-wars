@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
-const REQUEST_TIMEOUT = 10000;
+// const REQUEST_TIMEOUT = 20000;
+const QUERY_LIMIT = 10;
 
 enum EAPIRoutes {
   PEOPLE = 'people/',
@@ -10,6 +11,7 @@ enum EAPIRoutes {
 }
 
 export enum EGender {
+  ALL = 'all',
   MALE = 'male',
   FEMALE = 'female',
   OTHER = 'other',
@@ -34,7 +36,7 @@ export interface ICharacter {
   edited: string;
 }
 
-interface IFilm {
+export interface IFilm {
   title: string;
   episode_id: number;
   opening_crawl: string;
@@ -59,8 +61,6 @@ export interface ISWAPIResponse {
 }
 
 class StarWarsAPIService {
-  private baseURL: string;
-
   private axiosInstance: AxiosInstance;
 
   constructor() {
@@ -68,17 +68,24 @@ class StarWarsAPIService {
       throw new Error('env: REACT_APP_API_URL is not defined');
     }
 
-    this.baseURL = process.env.REACT_APP_API_URL;
     this.axiosInstance = axios.create({
       baseURL: process.env.REACT_APP_API_URL,
-      timeout: REQUEST_TIMEOUT,
+      // timeout: REQUEST_TIMEOUT,
     });
   }
 
-  public getCharactes = async (name?: string, page?: number): Promise<ICharacter[]> => {
+  public getCharactes = async (): Promise<ICharacter[]> => {
     try {
-      const response = await this.axiosInstance.get(EAPIRoutes.PEOPLE, { params: { name, page } });
-      return response.data.results;
+      const response = await this.axiosInstance.get(EAPIRoutes.PEOPLE);
+      const pages = Math.ceil(response.data.count / QUERY_LIMIT);
+
+      const responses = await Promise.all(
+        Array.from(Array(pages), (_, i) =>
+          this.axiosInstance.get(EAPIRoutes.PEOPLE, { params: { page: i + 1 } })
+        )
+      );
+
+      return responses.map((resp) => resp.data.results).flat();
     } catch (error) {
       return Promise.reject(error);
     }
@@ -96,11 +103,28 @@ class StarWarsAPIService {
   public getFilms = async (): Promise<IFilm[]> => {
     try {
       const response = await this.axiosInstance.get(EAPIRoutes.FILMS);
-      return response.data.results;
+      const pages = Math.ceil(response.data.count / QUERY_LIMIT);
+
+      const responses = await Promise.all(
+        Array.from(Array(pages), (_, i) =>
+          this.axiosInstance.get(EAPIRoutes.FILMS, { params: { page: i + 1 } })
+        )
+      );
+
+      return responses.map((resp) => resp.data.results).flat();
     } catch (error) {
       return Promise.reject(error);
     }
   };
+
+  // public getCertainFilms = async (ids: string[]): Promise<IFilm[]> => {
+  //   try {
+  //     const response = await this.axiosInstance.get(`${EAPIRoutes.FILMS}${id}/`);
+  //     return response.data.results;
+  //   } catch (error) {
+  //     return Promise.reject(error);
+  //   }
+  // };
 }
 
 export const starWarsAPIService = new StarWarsAPIService();

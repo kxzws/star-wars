@@ -10,3 +10,15 @@ export const getListData = createAsyncThunk('list/getListData', async (_, { reje
     return rejectWithValue(error);
   }
 });
+
+export const getMoviesData = createAsyncThunk(
+  'list/getMoviesData',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await starWarsAPIService.getFilms();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

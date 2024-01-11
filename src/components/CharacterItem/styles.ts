@@ -1,20 +1,22 @@
 import { styled } from '@mui/system';
 import { Card, CardContent } from '@mui/material';
 
+import { COLORS } from '../../utils';
+
 export const CharacterCard = styled(Card)`
-  background-color: #edece6;
-  border: 1px solid rgba(12, 9, 10, 0.4);
+  background-color: ${COLORS.white};
+  border: 1px solid ${COLORS.lightGrey};
   border-radius: initial;
-  box-shadow: 8px 8px 0px 0px #ffe81f;
+  box-shadow: 8px 8px 0px 0px ${COLORS.yellow};
   transition: all ease-out 0.3s;
   cursor: pointer;
 
   &:hover {
-    box-shadow: 14px 14px 0px 0px rgba(255, 232, 31, 0.85);
+    box-shadow: 14px 14px 0px 0px ${COLORS.lightYellow};
   }
 
   &:active {
-    box-shadow: 10px 10px 0px 0px rgba(255, 232, 31, 0.85);
+    box-shadow: 10px 10px 0px 0px ${COLORS.lightYellow};
   }
 `;
 

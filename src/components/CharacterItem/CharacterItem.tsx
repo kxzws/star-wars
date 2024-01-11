@@ -2,12 +2,13 @@ import { ReactElement, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ICharacter } from '../../services';
+import { parseIdFromURL } from '../../utils';
 
 import { CharacterCard, CharacterContent, CardHeadline, CardLine, Label } from './styles';
 
 const VISIBLE_FIELDS = {
-  gender: null,
-  birth_year: null,
+  gender: '',
+  birth_year: '',
   height: 'cm',
   mass: 'kg',
 };
@@ -19,10 +20,7 @@ interface CharacterItemProps {
 export const CharacterItem = ({ data }: CharacterItemProps): ReactElement => {
   const navigate = useNavigate();
 
-  const characterId = useMemo(() => {
-    const splitted = data.url.split('/');
-    return splitted[splitted.length - 2];
-  }, [data]);
+  const characterId = useMemo(() => parseIdFromURL(data.url), [data]);
 
   const handleCardClick = useCallback(() => {
     navigate(`/characters/${characterId}`);
@@ -38,7 +36,8 @@ export const CharacterItem = ({ data }: CharacterItemProps): ReactElement => {
             <CardLine key={field}>
               <Label>{field}:</Label>
               <p>
-                {data[field as keyof ICharacter]} {VISIBLE_FIELDS[field]}
+                {data[field as keyof ICharacter]}
+                {data[field as keyof ICharacter] === 'unknown' ? '' : ` ${VISIBLE_FIELDS[field]}`}
               </p>
             </CardLine>
           ) : null
