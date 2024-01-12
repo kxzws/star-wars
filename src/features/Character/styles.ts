@@ -1,14 +1,12 @@
 import { styled } from '@mui/system';
 import { Card, CardContent } from '@mui/material';
 
-import { COLORS, MEDIA_ENDPOINTS, STYLE_ASSETS } from '../../styles';
+import { COLORS, MEDIA_ENDPOINTS } from '../../styles';
 
 export const CharacterCont = styled('section')`
   padding: 42px 24px;
   height: 100%;
   width: 100%;
-  background-color: ${COLORS.darkGrey};
-  ${STYLE_ASSETS.starBackground}
 
   @media screen and (min-width: ${MEDIA_ENDPOINTS.wideDesktop}) {
     padding-top: 10%;

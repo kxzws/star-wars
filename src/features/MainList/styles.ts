@@ -1,14 +1,12 @@
 import { styled } from '@mui/system';
 import Masonry from 'react-masonry-css';
 
-import { COLORS, MEDIA_ENDPOINTS, STYLE_ASSETS } from '../../styles';
+import { MEDIA_ENDPOINTS } from '../../styles';
 
 export const MainList = styled('main')`
   flex: 1 1 auto;
   padding: 12px 74px;
   width: 100%;
-  background-color: ${COLORS.darkGrey};
-  ${STYLE_ASSETS.starBackground}
 
   @media screen and (max-width: ${MEDIA_ENDPOINTS.wideTablet}) {
     padding: 12px 36px;

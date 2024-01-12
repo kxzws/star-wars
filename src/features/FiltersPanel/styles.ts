@@ -13,8 +13,9 @@ import { COLORS, MEDIA_ENDPOINTS } from '../../styles';
 
 export const Panel = styled('section')`
   margin: 0 auto;
+  height: fit-content;
   width: 24%;
-  padding: 12px 42px;
+  padding: 32px 42px;
   display: flex;
   flex-flow: column;
   gap: 20px;
