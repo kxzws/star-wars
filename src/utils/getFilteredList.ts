@@ -30,12 +30,12 @@ export const getFilteredList = (
     const isMassMatch =
       !massFilter ||
       (!massFilter.from && !massFilter.to) ||
-      (!!massFilter.from && itemMass > massFilter.from && !massFilter.to) ||
-      (!massFilter.from && !!massFilter.to && itemMass < massFilter.to) ||
+      (!!massFilter.from && itemMass >= massFilter.from && !massFilter.to) ||
+      (!massFilter.from && !!massFilter.to && itemMass <= massFilter.to) ||
       (!!massFilter.from &&
-        itemMass > massFilter.from &&
+        itemMass >= massFilter.from &&
         !!massFilter.to &&
-        itemMass < massFilter.to);
+        itemMass <= massFilter.to);
 
     return isMoviesMatch && isNameMatch && isGenderMatch && isMassMatch;
   });

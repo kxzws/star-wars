@@ -10,7 +10,7 @@ export const CharacterCont = styled('section')`
   background-color: ${COLORS.darkGrey};
   ${STYLE_ASSETS.starBackground}
 
-  @media screen and (min-width: ${MEDIA_ENDPOINTS.desktop}) {
+  @media screen and (min-width: ${MEDIA_ENDPOINTS.wideDesktop}) {
     padding-top: 10%;
   }
 

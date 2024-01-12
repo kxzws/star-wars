@@ -105,13 +105,13 @@ export const Character = (): ReactElement => {
               )}
               {fetchStatus.starships && !!fetchStatus.starships.length && (
                 <CardBlock>
-                  <Label>Starships:</Label>
+                  <Label>Spaceships:</Label>
                   <p>{fetchStatus.starships.map((starship) => starship.name).join(', ')}</p>
                 </CardBlock>
               )}
               {fetchStatus.films && !!fetchStatus.films.length && (
                 <CardBlock>
-                  <Label>Films:</Label>
+                  <Label>Movies:</Label>
                   <p>{fetchStatus.films.map((film) => film.title).join(', ')}</p>
                 </CardBlock>
               )}

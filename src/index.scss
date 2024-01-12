@@ -24,6 +24,16 @@ html {
   }
 }
 
+body {
+  background-color: #0c090a;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
 a {
   font: inherit;
   color: inherit;

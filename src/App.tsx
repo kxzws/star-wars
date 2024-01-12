@@ -4,13 +4,10 @@ import { Route, Routes } from 'react-router-dom';
 import { Header } from './components';
 import { Character, Main } from './features';
 
-import './App.scss';
-
 const App = (): ReactElement => {
   return (
     <>
       <Header />
-
       <Routes>
         <Route path="/" element={<Main />} />
 
