@@ -1,7 +1,7 @@
 import { styled } from '@mui/system';
 import { Card, CardContent } from '@mui/material';
 
-import { COLORS, STYLE_ASSETS } from '../../utils';
+import { COLORS, MEDIA_ENDPOINTS, STYLE_ASSETS } from '../../styles';
 
 export const CharacterCont = styled('section')`
   padding: 42px 24px;
@@ -9,6 +9,14 @@ export const CharacterCont = styled('section')`
   width: 100%;
   background-color: ${COLORS.darkGrey};
   ${STYLE_ASSETS.starBackground}
+
+  @media screen and (min-width: ${MEDIA_ENDPOINTS.desktop}) {
+    padding-top: 10%;
+  }
+
+  @media screen and (max-width: ${MEDIA_ENDPOINTS.narrowTablet}) {
+    padding: 24px 18px;
+  }
 `;
 
 export const CharacterCard = styled(Card)`
@@ -18,6 +26,18 @@ export const CharacterCard = styled(Card)`
   border: 1px solid ${COLORS.lightGrey};
   border-radius: initial;
   box-shadow: 8px 8px 0px 0px ${COLORS.yellow};
+
+  @media screen and (max-width: ${MEDIA_ENDPOINTS.narrowDesktop}) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: ${MEDIA_ENDPOINTS.tablet}) {
+    width: 75%;
+  }
+
+  @media screen and (max-width: ${MEDIA_ENDPOINTS.narrowTablet}) {
+    width: 90%;
+  }
 `;
 
 export const CharacterContent = styled(CardContent)`
@@ -31,7 +51,7 @@ export const CharacterContent = styled(CardContent)`
 export const CardHeadline = styled('h3')`
   margin-bottom: 12px;
   padding-bottom: 12px;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   text-align: right;
   text-transform: uppercase;

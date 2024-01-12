@@ -9,33 +9,50 @@ import {
   TextField,
 } from '@mui/material';
 
-import { COLORS } from '../../utils';
+import { COLORS, MEDIA_ENDPOINTS } from '../../styles';
 
 export const Panel = styled('section')`
+  margin: 0 auto;
   width: 24%;
   padding: 12px 42px;
   display: flex;
   flex-flow: column;
   gap: 20px;
   background-color: ${COLORS.black};
+
+  @media screen and (max-width: ${MEDIA_ENDPOINTS.narrowDesktop}) {
+    width: 35%;
+  }
+
+  @media screen and (max-width: ${MEDIA_ENDPOINTS.wideTablet}) {
+    padding: 12px 24px;
+  }
+
+  @media screen and (max-width: ${MEDIA_ENDPOINTS.tablet}) {
+    width: 70%;
+  }
+
+  @media screen and (max-width: ${MEDIA_ENDPOINTS.mobile}) {
+    width: 100%;
+  }
 `;
 
 export const Headline = styled('h2')`
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
 `;
 
 export const StyledFormControl = styled(FormControl)`
   font-family: 'Kanit';
-  font-size: 16px;
+  font-size: 1rem;
   color: ${COLORS.white};
 `;
 
 export const StyledTextField = styled(TextField)`
   & > div {
     font-family: 'Kanit';
-    font-size: 16px;
+    font-size: 1rem;
     color: ${COLORS.white};
     border: 1px solid ${COLORS.white};
     border-radius: 0;
@@ -60,7 +77,7 @@ export const StyledTextField = styled(TextField)`
 
 export const StyledSelect = styled(Select)`
   font-family: 'Kanit';
-  font-size: 16px;
+  font-size: 1rem;
   color: ${COLORS.white};
 
   &:hover > fieldset.MuiOutlinedInput-notchedOutline {
@@ -81,13 +98,13 @@ export const StyledSelect = styled(Select)`
 
 export const StyledSelectOption = styled(MenuItem)`
   font-family: 'Kanit';
-  font-size: 16px;
+  font-size: 1rem;
 `;
 
 export const StyledFormLabel = styled(FormLabel)`
   margin-bottom: 2px;
   font-family: 'Kanit';
-  font-size: 18px;
+  font-size: 1.125rem;
   color: ${COLORS.white};
 
   &.Mui-focused,
@@ -99,7 +116,7 @@ export const StyledFormLabel = styled(FormLabel)`
 export const StyledRadioOption = styled(FormControlLabel)`
   & > .MuiFormControlLabel-label {
     font-family: 'Kanit';
-    font-size: 16px;
+    font-size: 1rem;
     color: ${COLORS.white};
   }
 
@@ -114,7 +131,7 @@ export const StyledRadioOption = styled(FormControlLabel)`
 
   &.Mui-disabled > .MuiFormControlLabel-label {
     font-family: 'Kanit';
-    font-size: 16px;
+    font-size: 1rem;
     color: ${COLORS.paleWhite};
   }
 
@@ -125,7 +142,7 @@ export const StyledRadioOption = styled(FormControlLabel)`
 
 export const Label = styled('p')`
   margin-bottom: 8px;
-  font-size: 18px;
+  font-size: 1.125rem;
 `;
 
 export const ResetButton = styled(Button)`

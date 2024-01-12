@@ -1,7 +1,7 @@
 import { styled } from '@mui/system';
 import { Card, CardContent } from '@mui/material';
 
-import { COLORS } from '../../utils';
+import { COLORS } from '../../styles';
 
 export const CharacterCard = styled(Card)`
   background-color: ${COLORS.white};
@@ -30,7 +30,7 @@ export const CharacterContent = styled(CardContent)`
 
 export const CardHeadline = styled('h3')`
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   text-align: right;
   text-transform: uppercase;

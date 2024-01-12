@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 
-import { COLORS } from '../../utils';
+import { COLORS } from '../../styles';
 
 export const Header = styled('header')`
   padding: 22px 42px;
@@ -17,6 +17,7 @@ export const Header = styled('header')`
 
 export const Headline = styled(Link)`
   font-family: 'Rubik Mono One';
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 400;
+  text-align: center;
 `;

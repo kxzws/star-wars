@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import { COLORS } from '../../utils';
+import { COLORS } from '../../styles';
 
 export const Text = styled.h4<{ color: 'white' | 'black' }>`
   font-family: 'Rubik Mono One';
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 400;
   color: ${({ color }) => COLORS[color]};
   animation: shimmer 1s infinite;

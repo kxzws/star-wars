@@ -102,7 +102,6 @@ export const FiltersPanel = (): ReactElement => {
         type="search"
         size="small"
         placeholder="Name"
-        // value={nameSearch}
         value={searchValue}
         onChange={handleSearchChange}
       />

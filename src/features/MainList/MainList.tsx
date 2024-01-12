@@ -31,7 +31,7 @@ export const MainList = (): ReactElement => {
         <>
           <CountText>Results: {filteredList.length}</CountText>
           <MainMasonry
-            breakpointCols={{ default: 3 }}
+            breakpointCols={{ default: 4, 1800: 3, 1200: 2, 780: 1 }}
             className="masonry"
             columnClassName="masonry"
           >
