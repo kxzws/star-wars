@@ -1,10 +1,20 @@
 import { styled } from '@mui/system';
-import { Button, FormControl, Select } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from '@mui/material';
 
 import { COLORS } from '../../utils';
 
+const DISABLED_COLOR = 'rgba(255, 255, 255, 0.5)';
+
 export const Panel = styled('section')`
-  width: 30%;
+  width: 24%;
   padding: 12px 42px;
   display: flex;
   flex-flow: column;
@@ -18,20 +28,106 @@ export const Headline = styled('h2')`
   text-transform: uppercase;
 `;
 
-export const BackgroundBox = styled('div')`
-  width: 100%;
-  color: ${COLORS.black};
-  background-color: ${COLORS.white};
+export const StyledFormControl = styled(FormControl)`
+  font-family: 'Kanit';
+  font-size: 16px;
+  color: ${COLORS.white};
 `;
 
-export const StyledFormControl = styled(FormControl)`
-  /* background-color: ${COLORS.white}; */
-  /* border-radius: 4px; */
+export const StyledTextField = styled(TextField)`
+  & > div {
+    font-family: 'Kanit';
+    font-size: 16px;
+    color: ${COLORS.white};
+    border: 1px solid ${COLORS.white};
+    border-radius: 0;
+
+    &.Mui-disabled {
+      color: ${COLORS.white};
+    }
+
+    &.Mui-disabled > input::placeholder {
+      -webkit-text-fill-color: ${DISABLED_COLOR};
+    }
+
+    & > input::placeholder {
+      opacity: 0.85;
+    }
+
+    &.Mui-focused > fieldset.MuiOutlinedInput-notchedOutline {
+      border-color: ${COLORS.white};
+    }
+  }
 `;
 
 export const StyledSelect = styled(Select)`
-  /* background-color: ${COLORS.white}; */
-  /* border-color: ${COLORS.lightYellow}; */
+  font-family: 'Kanit';
+  font-size: 16px;
+  color: ${COLORS.white};
+
+  &:hover > fieldset.MuiOutlinedInput-notchedOutline {
+    border-color: ${COLORS.white};
+  }
+
+  & fieldset,
+  &.Mui-focused > fieldset.MuiOutlinedInput-notchedOutline,
+  &.Mui-disabled > fieldset.MuiOutlinedInput-notchedOutline {
+    border-color: ${COLORS.white};
+    border-radius: 0;
+  }
+
+  &.Mui-disabled > div {
+    -webkit-text-fill-color: ${DISABLED_COLOR};
+  }
+`;
+
+export const StyledSelectOption = styled(MenuItem)`
+  font-family: 'Kanit';
+  font-size: 16px;
+`;
+
+export const StyledFormLabel = styled(FormLabel)`
+  margin-bottom: 2px;
+  font-family: 'Kanit';
+  font-size: 18px;
+  color: ${COLORS.white};
+
+  &.Mui-focused,
+  &.Mui-disabled {
+    color: ${COLORS.white};
+  }
+`;
+
+export const StyledRadioOption = styled(FormControlLabel)`
+  & > .MuiFormControlLabel-label {
+    font-family: 'Kanit';
+    font-size: 16px;
+    color: ${COLORS.white};
+  }
+
+  & > span:first-of-type {
+    padding: 2px 9px;
+    color: ${COLORS.white};
+  }
+
+  & > span.Mui-checked {
+    color: ${COLORS.lightYellow};
+  }
+
+  &.Mui-disabled > .MuiFormControlLabel-label {
+    font-family: 'Kanit';
+    font-size: 16px;
+    color: ${DISABLED_COLOR};
+  }
+
+  &.Mui-disabled > span.Mui-checked {
+    color: ${COLORS.white};
+  }
+`;
+
+export const Label = styled('p')`
+  margin-bottom: 8px;
+  font-size: 18px;
 `;
 
 export const ResetButton = styled(Button)`
@@ -43,5 +139,10 @@ export const ResetButton = styled(Button)`
   &:hover {
     border-color: ${COLORS.yellow};
     opacity: 1;
+  }
+
+  &.Mui-disabled {
+    color: ${COLORS.white};
+    border-color: ${COLORS.white};
   }
 `;

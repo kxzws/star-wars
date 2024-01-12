@@ -1,13 +1,5 @@
 import { ReactElement, useCallback, useEffect } from 'react';
-import {
-  FormControlLabel,
-  FormLabel,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  SelectChangeEvent,
-  TextField,
-} from '@mui/material';
+import { Radio, RadioGroup, SelectChangeEvent } from '@mui/material';
 
 import { useAppDispatch, useTypedSelector } from '../../hooks';
 import { listSlice } from '../../redux/list/slices';
@@ -15,14 +7,19 @@ import { getMoviesData } from '../../redux/list/thunks';
 import { parseIdFromURL } from '../../utils';
 
 import {
-  BackgroundBox,
   Headline,
+  Label,
   Panel,
   ResetButton,
   StyledFormControl,
+  StyledFormLabel,
+  StyledRadioOption,
   StyledSelect,
+  StyledSelectOption,
+  StyledTextField,
 } from './styles';
 import { EGender } from '../../services';
+import { ErrorTypography } from '../../components';
 
 export const FiltersPanel = (): ReactElement => {
   const {
@@ -47,7 +44,7 @@ export const FiltersPanel = (): ReactElement => {
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
       dispatch(setNameSearch(e.target.value));
     },
-    []
+    [dispatch, setNameSearch]
   );
 
   const handleRadioChange = useCallback(
@@ -89,63 +86,54 @@ export const FiltersPanel = (): ReactElement => {
   return (
     <Panel>
       <Headline>Filters</Headline>
-      <BackgroundBox>
-        <TextField
-          fullWidth
-          disabled={isLoading}
-          id="name"
-          type="search"
+      <StyledTextField
+        fullWidth
+        disabled={isLoading}
+        id="name"
+        type="search"
+        size="small"
+        placeholder="Name"
+        value={nameSearch}
+        onChange={handleSearchChange}
+      />
+      <StyledFormControl disabled={isLoading} fullWidth>
+        <StyledFormLabel id="gender-label">Gender</StyledFormLabel>
+        <RadioGroup
+          aria-labelledby="gender-label"
+          name="gender"
+          value={genderFilter}
+          onChange={handleRadioChange}
+        >
+          <StyledRadioOption value={EGender.ALL} control={<Radio />} label={EGender.ALL} />
+          <StyledRadioOption value={EGender.FEMALE} control={<Radio />} label={EGender.FEMALE} />
+          <StyledRadioOption value={EGender.MALE} control={<Radio />} label={EGender.MALE} />
+          <StyledRadioOption value={EGender.OTHER} control={<Radio />} label={EGender.OTHER} />
+        </RadioGroup>
+      </StyledFormControl>
+      {errorMovies && <ErrorTypography>{errorMovies.message}</ErrorTypography>}
+      <StyledFormControl disabled={isLoading || isMoviesLoading} fullWidth>
+        <StyledSelect
+          id="movie"
           size="small"
-          placeholder="Name"
-          value={nameSearch}
-          onChange={handleSearchChange}
-        />
-      </BackgroundBox>
-      <BackgroundBox>
-        <StyledFormControl disabled={isLoading} fullWidth>
-          <FormLabel id="gender-label">Gender</FormLabel>
-          <RadioGroup
-            row
-            aria-labelledby="gender-label"
-            name="gender"
-            value={genderFilter}
-            onChange={handleRadioChange}
-          >
-            <FormControlLabel value={EGender.ALL} control={<Radio />} label={EGender.ALL} />
-            <FormControlLabel value={EGender.FEMALE} control={<Radio />} label={EGender.FEMALE} />
-            <FormControlLabel value={EGender.MALE} control={<Radio />} label={EGender.MALE} />
-            <FormControlLabel value={EGender.OTHER} control={<Radio />} label={EGender.OTHER} />
-          </RadioGroup>
-        </StyledFormControl>
-      </BackgroundBox>
-      {errorMovies && `error: ${errorMovies.message}`}
-      <BackgroundBox>
-        <StyledFormControl disabled={isLoading || isMoviesLoading} fullWidth>
-          <StyledSelect
-            labelId="select-label"
-            id="movie"
-            label="Movie"
-            size="small"
-            value={moviesFilter}
-            onChange={handleSelectChange}
-            inputProps={{ 'aria-label': 'Without label' }}
-            displayEmpty
-          >
-            <MenuItem disabled value="">
-              Movie
-            </MenuItem>
-            {movies.map((movie) => (
-              <MenuItem key={movie.title} value={parseIdFromURL(movie.url)}>
-                {movie.title}
-              </MenuItem>
-            ))}
-          </StyledSelect>
-        </StyledFormControl>
-      </BackgroundBox>
-      Mass
-      <BackgroundBox>
+          value={moviesFilter}
+          onChange={handleSelectChange}
+          inputProps={{ 'aria-label': 'Without label' }}
+          displayEmpty
+        >
+          <StyledSelectOption disabled value="">
+            Movie
+          </StyledSelectOption>
+          {movies.map((movie) => (
+            <StyledSelectOption key={movie.title} value={parseIdFromURL(movie.url)}>
+              {movie.title}
+            </StyledSelectOption>
+          ))}
+        </StyledSelect>
+      </StyledFormControl>
+      <div>
+        <Label>Mass</Label>
         <StyledFormControl fullWidth>
-          <TextField
+          <StyledTextField
             fullWidth
             disabled={isLoading}
             id="massFrom"
@@ -155,7 +143,7 @@ export const FiltersPanel = (): ReactElement => {
             value={massFilter?.from || ''}
             onChange={handleMassFromChange}
           />
-          <TextField
+          <StyledTextField
             fullWidth
             disabled={isLoading}
             id="massTo"
@@ -166,8 +154,13 @@ export const FiltersPanel = (): ReactElement => {
             onChange={handleMassToChange}
           />
         </StyledFormControl>
-      </BackgroundBox>
-      <ResetButton variant="outlined" type="button" onClick={handleResetButtonClick}>
+      </div>
+      <ResetButton
+        disabled={isLoading || isMoviesLoading}
+        variant="outlined"
+        type="button"
+        onClick={handleResetButtonClick}
+      >
         Reset
       </ResetButton>
     </Panel>
