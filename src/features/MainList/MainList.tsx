@@ -3,9 +3,9 @@ import { ReactElement, useEffect, useMemo } from 'react';
 import { useAppDispatch, useTypedSelector } from '../../hooks';
 import { getListData } from '../../redux/list/thunks';
 import { getFilteredList } from '../../utils';
-import { CharacterItem } from '../../components';
+import { CharacterItem, ErrorTypography, Loading } from '../../components';
 
-import { MainList as MainListCont, MainMasonry } from './styles';
+import { CountText, MainList as MainListCont, MainMasonry } from './styles';
 
 export const MainList = (): ReactElement => {
   const { list, isLoading, error, moviesFilter, nameSearch, genderFilter, massFilter } =
@@ -24,12 +24,12 @@ export const MainList = (): ReactElement => {
 
   return (
     <MainListCont>
-      {error && `error: ${error.message}`}
+      {error && <ErrorTypography>{error.message}</ErrorTypography>}
       {isLoading ? (
-        'Loading...'
+        <Loading color="white" />
       ) : (
         <>
-          Results: {filteredList.length}
+          <CountText>Results: {filteredList.length}</CountText>
           <MainMasonry
             breakpointCols={{ default: 3 }}
             className="masonry"

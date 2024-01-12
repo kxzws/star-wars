@@ -2,6 +2,7 @@ import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ICharacter, IFilm, ISpecies, IStarship, starWarsAPIService } from '../../services';
+import { ErrorTypography, Loading } from '../../components';
 import { parseIdFromURL } from '../../utils';
 
 import {
@@ -71,11 +72,11 @@ export const Character = (): ReactElement => {
 
   return (
     <CharacterCont>
-      {fetchStatus.error && `error: ${fetchStatus.error.message}`}
+      {fetchStatus.error && <ErrorTypography>{fetchStatus.error.message}</ErrorTypography>}
       <CharacterCard>
         <CharacterContent>
           {fetchStatus.isLoading ? (
-            'Loading...'
+            <Loading color="black" />
           ) : (
             <>
               <CardHeadline>{fetchStatus.data?.name}</CardHeadline>

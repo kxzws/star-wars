@@ -38,3 +38,8 @@ export const MainMasonry = styled(Masonry)`
     }
   }
 `;
+
+export const CountText = styled('p')`
+  margin-bottom: 14px;
+  font-size: 18px;
+`;
