@@ -14,7 +14,7 @@ export const MainList = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getListData());
+    if (!list.length) dispatch(getListData());
   }, [dispatch, getListData]);
 
   const filteredList = useMemo(

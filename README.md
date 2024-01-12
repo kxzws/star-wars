@@ -10,15 +10,6 @@ Built with React, Redux (RTK), Typescript and Styled-components. MUI and react-m
 <img src="https://github.com/kxzws/star-wars/assets/63120601/ea24476f-2050-4825-b736-1e032526269e" alt="" width=800 />
 <img src="https://github.com/kxzws/star-wars/assets/63120601/368a2a84-53d5-42b7-a058-e5a54d9eb857" alt="" width=800 />
 
-## Development stages in time
-
-1. Project initialization and setup: 3.5h
-2. Main page development: 9h
-3. Character page development: 1h
-4. Major and minor fixes, styling: 3h
-5. Polishing touches, testing: 1.5h
-6. Deployment: 0.5h
-
 ## Local setup
 
 Clone this repository with:\
@@ -35,3 +26,13 @@ To start project locally, in the root directory you can run:\
 `npm start`
 
 It runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Development stages in time
+
+1. Project initialization and setup: 3.5h
+2. Main page development: 9h
+3. Character page development: 1h
+4. Major and minor fixes, styling: 3h
+5. Polishing touches, testing: 1.5h
+6. Deployment: 0.5h
+Overall: 18.5h

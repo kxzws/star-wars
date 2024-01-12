@@ -90,7 +90,8 @@ export const FiltersPanel = (): ReactElement => {
 
   const handleResetButtonClick = useCallback((): void => {
     dispatch(clearFilters());
-  }, [dispatch, clearFilters]);
+    setSearchValue('');
+  }, [dispatch, clearFilters, setSearchValue]);
 
   return (
     <Panel>
