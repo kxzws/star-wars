@@ -1,6 +1,6 @@
 # Getting started
 
-Deployment: []()
+Deployment: [https://star-wars-kxzws.netlify.app/](https://star-wars-kxzws.netlify.app/)
 
 ## Star Wars Characters Explorer
 
@@ -16,8 +16,8 @@ Built with React, Redux (RTK), Typescript and Styled-components. MUI and react-m
 2. Main page development: 9h
 3. Character page development: 1h
 4. Major and minor fixes, styling: 3h
-5. Polishing touches, testing: -
-6. Deployment: -
+5. Polishing touches, testing: 1.5h
+6. Deployment: 0.5h
 
 ## Local setup
 
