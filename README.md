@@ -35,4 +35,5 @@ It runs the app in the development mode. Open [http://localhost:3000](http://loc
 4. Major and minor fixes, styling: 3h
 5. Polishing touches, testing: 1.5h
 6. Deployment: 0.5h
+
 Overall: 18.5h
