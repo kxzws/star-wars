@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useEffect } from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Radio, RadioGroup, SelectChangeEvent } from '@mui/material';
 
 import { useAppDispatch, useTypedSelector } from '../../hooks';
@@ -36,15 +36,24 @@ export const FiltersPanel = (): ReactElement => {
     listSlice.actions;
   const dispatch = useAppDispatch();
 
+  const [searchValue, setSearchValue] = useState(nameSearch);
+
   useEffect(() => {
     dispatch(getMoviesData());
   }, [dispatch, getMoviesData]);
 
+  useEffect(() => {
+    const debounceTimeoutId = setTimeout(() => {
+      dispatch(setNameSearch(searchValue));
+    }, 700);
+    return () => clearTimeout(debounceTimeoutId);
+  }, [dispatch, setNameSearch, searchValue]);
+
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-      dispatch(setNameSearch(e.target.value));
+      setSearchValue(e.target.value);
     },
-    [dispatch, setNameSearch]
+    [setSearchValue]
   );
 
   const handleRadioChange = useCallback(
@@ -93,7 +102,8 @@ export const FiltersPanel = (): ReactElement => {
         type="search"
         size="small"
         placeholder="Name"
-        value={nameSearch}
+        // value={nameSearch}
+        value={searchValue}
         onChange={handleSearchChange}
       />
       <StyledFormControl disabled={isLoading} fullWidth>
