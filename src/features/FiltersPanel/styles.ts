@@ -11,8 +11,6 @@ import {
 
 import { COLORS } from '../../utils';
 
-const DISABLED_COLOR = 'rgba(255, 255, 255, 0.5)';
-
 export const Panel = styled('section')`
   width: 24%;
   padding: 12px 42px;
@@ -47,7 +45,7 @@ export const StyledTextField = styled(TextField)`
     }
 
     &.Mui-disabled > input::placeholder {
-      -webkit-text-fill-color: ${DISABLED_COLOR};
+      -webkit-text-fill-color: ${COLORS.paleWhite};
     }
 
     & > input::placeholder {
@@ -77,7 +75,7 @@ export const StyledSelect = styled(Select)`
   }
 
   &.Mui-disabled > div {
-    -webkit-text-fill-color: ${DISABLED_COLOR};
+    -webkit-text-fill-color: ${COLORS.paleWhite};
   }
 `;
 
@@ -117,7 +115,7 @@ export const StyledRadioOption = styled(FormControlLabel)`
   &.Mui-disabled > .MuiFormControlLabel-label {
     font-family: 'Kanit';
     font-size: 16px;
-    color: ${DISABLED_COLOR};
+    color: ${COLORS.paleWhite};
   }
 
   &.Mui-disabled > span.Mui-checked {

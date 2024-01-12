@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
 
-// const REQUEST_TIMEOUT = 20000;
 const QUERY_LIMIT = 10;
 
 enum EAPIRoutes {
@@ -109,7 +108,6 @@ class StarWarsAPIService {
 
     this.axiosInstance = axios.create({
       baseURL: process.env.REACT_APP_API_URL,
-      // timeout: REQUEST_TIMEOUT,
     });
   }
 
